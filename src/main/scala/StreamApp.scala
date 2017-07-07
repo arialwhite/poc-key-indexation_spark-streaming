@@ -17,7 +17,7 @@ object StreamApp {
   def main(args: Array[String]) {
 
     val kafkaParams = Map[String, Object](
-      "bootstrap.servers" -> "localhost:9092",
+      "bootstrap.servers" -> "kafka:9092",
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
       "group.id" -> "key_indexer",
@@ -26,7 +26,7 @@ object StreamApp {
     )
 
     val conf = new SparkConf().setAppName("Streaming Application")
-               .setIfMissing("spark.cassandra.connection.host", "192.168.56.102")
+               .setIfMissing("spark.cassandra.connection.host", "cassandra")
     val ssc = new StreamingContext(conf, Seconds(2))
 
     val topics = Array("small_topic")
