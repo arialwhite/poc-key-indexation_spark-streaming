@@ -2,13 +2,10 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
 import org.apache.spark.TaskContext
-import org.apache.spark.rdd.RDD
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
-import com.datastax.spark.connector.streaming._
 import com.datastax.spark.connector.{SomeColumns, _}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.kafka010._
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
 import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
@@ -17,10 +14,10 @@ object StreamApp {
   def main(args: Array[String]) {
 
     val kafkaParams = Map[String, Object](
-      "bootstrap.servers" -> "kafka:9092",
+      "bootstrap.servers" -> "kafka:29092",
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
-      "group.id" -> "key_indexer",
+      "group.id" -> "index_to_cassandra",
       "auto.offset.reset" -> "earliest",
       "enable.auto.commit" -> (false: java.lang.Boolean)
     )
