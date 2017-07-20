@@ -1,6 +1,6 @@
 # Spark streaming - Indexation des clefs des messages Kafka
 
-Sous module git du projet https://github.com/arialwhite/poc-key-indexation_spark-streaming
+Sous module git du projet https://github.com/arialwhite/poc-key-indexation
 
 **Note: Projet actuellement en cours de réalisation**
 
