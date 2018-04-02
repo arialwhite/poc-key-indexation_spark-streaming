@@ -42,9 +42,10 @@ object StreamApp {
         it.zipWithIndex.map { case (record: ConsumerRecord[String, String], i)  =>
           val partition = o.partition
           val key = record.key
-          (key, fromOffset + i, partition)
+          val value = record.value
+          (key, fromOffset + i, partition, value)
         }
-      }.saveToCassandra("kafka_topics", "small_topic", SomeColumns("key", "offset", "partition"))
+      }.saveToCassandra("kafka_topics", "small_topic", SomeColumns("key", "offset", "partition", "value"))
 
       stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
     }
